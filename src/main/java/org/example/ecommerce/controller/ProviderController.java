@@ -27,10 +27,10 @@ public class ProviderController {
     @RequestMapping(value = "/save_provider", method = RequestMethod.POST)
     public String saveProvider(@ModelAttribute("Provider1") Provider provider){
         providerService.createProvider(provider);
-        return "redirect:/all/provider";
+        return "redirect:/all/provider/";
     }
 
-    @RequestMapping("/all/provider")
+    @RequestMapping("/all/provider/")
     public String list(Model model){
         List<Provider> listProvider=providerService.getAllProvider();
         model.addAttribute("ListProvider",listProvider);
@@ -39,7 +39,7 @@ public class ProviderController {
     @GetMapping("/provider/delete/{id}")
     public String deleteProvider(@PathVariable("id")int id, RedirectAttributes redirectAttributes){
         providerService.deleteProvider(id);
-        return "redirect:/all/provider";
+        return "redirect:/all/provider/";
     }
     @GetMapping("/provider/edit/{id}")
     public String showUpdateForm(@PathVariable("id") int id,Model model){
@@ -50,6 +50,6 @@ public class ProviderController {
     @PostMapping("/provider/update/{id}")
     public String updateProvider(@PathVariable("id") int id,Provider provider){
         providerService.UpdateProvider(provider);
-        return "redirect:/all/provider";
+        return "redirect:/all/provider/";
     }
 }

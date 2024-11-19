@@ -27,10 +27,10 @@ public class CustomerController {
     @RequestMapping(value = "/save_customer", method = RequestMethod.POST)
     public String saveCustomer(@ModelAttribute("Customer1") Customer customer){
         customerService.createCustomer(customer);
-        return "redirect:/all/customer";
+        return "redirect:/all/customer/";
     }
 
-    @RequestMapping("/all/customer")
+    @RequestMapping("/all/customer/")
     public String list(Model model){
         List<Customer> listCustomer=customerService.getAllCustomer();
         model.addAttribute("ListCustomer",listCustomer);
@@ -39,7 +39,7 @@ public class CustomerController {
     @GetMapping("/customer/delete/{id}")
     public String deleteCustomer(@PathVariable("id")int id, RedirectAttributes redirectAttributes){
         customerService.deleteCustomer(id);
-        return "redirect:/all/customer";
+        return "redirect:/all/customer/";
     }
     @GetMapping("/customer/edit/{id}")
     public String showUpdateForm(@PathVariable("id") int id,Model model){
@@ -50,6 +50,6 @@ public class CustomerController {
     @PostMapping("/update/customer/{id}")
     public String updateCustomer(@PathVariable("id") int id,Customer customer){
         customerService.UpdateCustomer(customer);
-        return "redirect:/all/customer";
+        return "redirect:/all/customer/";
     }
 }
