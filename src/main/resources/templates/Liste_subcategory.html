@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Liste des  subcategory</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+</head>
+
+<body>
+<div class="container my-2">
+  <div class="card">
+    <div class="card-body">
+      <div th:switch="${ListSubcategory}" class="container my-5">
+        <p class="my-5">
+          <a href="/addSubcategory" class="btn btn-primary">
+            <i class="fas fa-user-plus ml-2">Ajouter subcategory </i></a>
+        </p>
+        <div class="col-md-10">
+          <h2 th:case="null">No record found !!</h2>
+          <div th:case="*">
+            <table class="table table-striped table-responsive-md">
+              <thead>
+              <tr>
+                <th>ID</th>
+                <th>title</th>
+                <th>description</th>
+
+                <th>Modifier</th>
+                <th>Supprimer</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="subcategory : ${ListSubcategory}">
+                <td th:text="${subcategory.id}"></td>
+                <td th:text="${subcategory.title}"></td>
+                <td th:text="${subcategory.description}"></td>
+
+
+                <td>
+                  <a th:href="@{/subcategory/edit/{id}(id=${subcategory.id})}"
+                     class="btn btn-primary">
+                    <i class="fas fa-user-edit ml-2"></i>
+                  </a>
+                </td>
+                <td>
+                  <a th:href="@{/subcategory/delete/{id}(id=${subcategory.id})}"
+                     class="btn btn-primary">
+                    <i class="fas fa-user-times ml-2"></i>
+                  </a>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+
+</html>
